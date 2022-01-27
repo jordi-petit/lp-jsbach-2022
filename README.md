@@ -1,128 +1,97 @@
 # El llenguatge de programació JSBach
 
-Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un intèrpret per a un llenguatge de programació anomenat JSBach.
+Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un intèrpret per a un llenguatge de programació anomenat JSBach. La sortida d'aquest intèrpret serà una partitura i un fitxer midi que reproduirà la melodia escrita pel programador.
 
 ![JSBach](bach.png)
 
 
-## Història
+## Bach
 
 Johann Sebastian Bach (1685-1750) fou un organista i compositor de música barroca. La seva fecunda obra es considera el cim de la música barroca, i una de les màximes expressions de la música universal, no tan sols per la seva profunditat intel·lectual, la seva perfecció tècnica i la seva bellesa artística, sinó també per la síntesi dels diversos estils de la seva època, del passat i per la seva incomparable extensió.
 
 
 ## Presentació del llenguatge JSBach
 
-El llenguatge de programació JSBach té un aspecte semblant al C, però amb nombroses simplificacions perquè els profans i els infidels el puguin entendre i utilitzar.
+JSBach és un llenguatge de programació destinat a la composició algorísmica. Amb JSBach s'utilitzen construccions per generar composicions que donen lloc a partitures que poden ser desades en format PDF, MIDI i/o WAV.
 
-Aquest és el *Hello World* en JSBach:
+JSBach és un llenguatge imperatiu, amb una sintàxi que, evidentment, és barroca.
+
+Aquest és el *Hello Bach*:
 
 ```
-# Hello World en JSBach
+~ Petit programa en JSBach ~
 
-void main() {
-    write("El Primer dia: Déu creà la llum")
+main |:
+    <!> "Hello Bach"
+    <:> [B, A, C]
+:|
+```
+
+Els comentaris es troben dins de titlles (`~`).
+
+Els programes es troben constituïts per procediments.
+Cada procediment té un nom, paràmetres (en aquest exemple no n'hi ha), i un bloc de codi associat. Els blocs es troben inscrits
+entre els símbols `|:` i `:|`.
+
+La primera instrucció del programa `<!> "Hello Bach"` és una instrucció d'escriptura (*write*).  La instrucció d'escriptura no és gaire útil per compondre, però és útil per debugar, perquè permet escriure textos (entre dobles cometes), enters i llistes.
+
+La segona instrucció del programa `<:> [B, A, C]` és una instrucció de reproducció (*play*). Aquesta instrucció afegeix la llistes de notes donades a la partitura. Les llistes es donen entre claudàtors amb els seus elements separats per comes. En aquest cas, els elements són les notes músicals `B`, `A` i `C`. JSBach utilitza el sistema de notació musical anglès,
+no el sistema de notació musical llatí. Així, aquest programa
+genera la melodia SI, LA, DO.
+
+L'execució del programa anterior produïria la sortida del missatge `Hello Bach` per pantalla i generaria fitxers PDF, MIDI i WAV amb les notes SI, LA, DO:
+
+- [hello.pdf]
+- [hello.midi]
+- [hello.wav]
+
+
+JSBach permet escriure programes senzills utilitzant enters de forma semblant als LPs habituals. Per exemple, el següent programa mostra com llegir dos nombres i calcular el seu màxim comú divisor utilitzant l'algorisme d'Euclides amb dos procediments i entrada/sortida:
+
+```
+~ programa llegeix dos enters i n'escriu el seu maxim comu divisor ~
+
+main() |:
+    <!> "Escriu dos nombres"
+    <?> a
+    <?> b
+    <?> "El seu MCD es"
+    euclides a b
 }
 
-```
-
-Com podeu veure, JSBach disposa d'accions definides amb `void` (però no té funcions) i ofereix una instrucció d'escriptura `write`. Els textos s'escriuen entre cometes dobles, però només es poden utilitzar dins dels `write`s. Els comentaris comencen amb `#` i acaben al final de la seva línia.
-
-El següent programa mostra com llegir dos nombres i calcular el seu màxim comú divisor utilitzant l'algorisme d'Euclides amb dos procediments i entrada/sortida:
-
-```
-void main() {
-    # llegeix dos enters i  n'escriu el seu maxim comu divisor
-    write("Escriu dos nombres")
-    read(a)
-    read(b)
-    write("El seu MCD es")
-    euclides(a, b)
-}
-
-void euclides(a, b) {
-    while (a <> b) {
-        if (a > b) {
-            a = a - b
-        } else {
-            b = b - a
-        }
-    }
-    write(a)
-}
-```
-
-Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus.
-
-Les variables no han de ser declarades, i poden ser de tipus enter o taula d'enters (*array*).
-
-Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `read` i `write` respectivament. Les instruccions no es separen ni acaben amb punts i comes superflus, això només ho necessiten els LPs dels descreguts. A més, fixeu-vos que JSBach utilitza l'autèntic operador de diferència que el beat va introduir a la seva *Ars Magna* i  que mai s'hauria d'haver abandonat: el `<>`.
-
-L'exemple següent il·lustra l'ús de taules per trobar la llista dels nombres
-primers:
-
-```
-void main() {
-    read(n)
-    array(p, n + 1) # crea un array [0 .. n] inicialitzant totes les posicions a zero
-    write(p)
-    eratostenes(p, n)
-    write(p)
-    for (i = 2; i <= n; i = i + 1) {
-        if (get(p, i) == 1) {
-            write(i)
-        }
-    }
-}
-
-void eratostenes(p, n) {
-    set(p, 0, 0)
-    set(p, 1, 0)
-    for (i = 2; i <= n; i = i + 1) {
-        set(p, i, 1)
-    }
-    for (i = 2; i * i <= n; i = i + 1) {
-        if (get(p, i) == 1) {
-            for (j = i + i; j <= n; j = j + i) {
-                set(p, j, 0)
-            }
-        }
-    }
+euclides a b |:
+    while a /= b |:
+        if (a > b) |:
+            a <- a - b
+        :||:
+            b <- b - a
+        :|
+    :|
+    <!> a
 }
 ```
 
-Si li donem `20` com a entrada, la sortida és
+Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus. Els paràmetres formals es separen amb blancs, com en Haskell.
+
+Les variables no han de ser declarades, i poden ser de tipus enter o llistes. Les notes músicals, es veurà més endavant, no són altra cosa que constants per a enters.
+
+Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `<?>` i `<!>` respectivament. Les instruccions no es separen ni acaben amb punts i comes superflus. L'operador de diferència és com a Haskell: `/=`.  L'assignació es fa amb la instrucció `<-`. El símbol `:||:` és l'`else` de JSBach.
+
+Com no podia ser d'altra manera, el llenguatge de programació JSBach compta amb recursivitat. Aquest programa mostra com solucionar el problema de les Torres de Hanoi:
 
 ```
-[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-[0, 0, 1, 1, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0, 1, 0, 1, 0]
-2
-3
-5
-7
-11
-13
-17
-19
-```
+main() |:
+    <?> n
+    hanoi n 1 2 3
+:|
 
-La creació de taules es fa amb la paraula clau `array`, la consulta
-amb `get` i la modificació amb `set` (l'operació d'indexació era considerada una blasfèmia a l'època d'en Ramon).
-
-Per tal de plaure a Déu, el llenguatge de programació JSBach compta amb recursivitat. Aquest programa mostra com solucionar el problema de les Torres de Hanoi:
-
-```
-void main() {
-    read(n)
-    hanoi(n, 1, 2, 3)
-}
-
-void hanoi(n, ori, dst, aux) {
-    if (n > 0) {
-        hanoi(n - 1, ori, aux, dst)
-        write(ori, "->", dst)
-        hanoi(n - 1, aux, dst, ori)
-    }
-}
+hanoi n ori dst aux |:
+    if n > 0 |:
+        hanoi (n - 1) ori aux dst
+        <!> ori "->" dst
+        hanoi (n - 1) aux dst ori
+    :|
+:|
 ```
 
 Amb l'entrada `3` la sortida és:
@@ -137,16 +106,50 @@ Amb l'entrada `3` la sortida és:
 1 -> 2
 ```
 
+Però, perquè quedar-se amb un mer llistat dels moviments? El programa següent compon una agradable melodia amb el  so dels discos movent-se, tot tocant la nota que es correspon al disc que es mou a cada pas:
+
+```
+main |:
+    src <- [C, D, E, F, G]
+    dst <- []
+    aux <- []
+    hanoi #src src dst aux
+:|
+
+hanoi n src dst aux |:
+    if n > 0 |:
+        hanoi (n - 1) src aux dst
+        note <- src!
+        dst << note
+        <:> note
+        hanoi (n - 1) aux dst src
+    :|
+:|
+```
+
+La partitura que es correspon en aquest programa és:
+
+IMATGE
+
+i aquí la podeu sentir:
+
+MUSICA  
+
+Cnviant o afegint més notes al piu d'orígen es poden compondre noves peces, ben agradables de sentir!
+
+Al programa anterior es poden veure més operacions  per a llistes: `x <- l!` elimina el darrer element  de la llista `l` i el deixa en `x`,  `l <- x` afageix l'element `x` al final de la llista `l`  i `#l` retorna la llargada de la llista `l`.
+
+
+
 
 # La vostra feina
 
-La vostra feina consisteix en:
+La vostra feina consisteix en
+implementar un intèrpret de JSBach.
 
-1. Implementar un intèrpret de JSBach.
-2. Implementar un *pretty-printer* per a JSBach.
+Per realitzar la vostra feina heu d'utilitzar Python3 i ANTLR4, tal com s'ha explicat a les classes de laboratori. Per generar les partitures, heu d'utilitzar el programa Lilipond.
 
-Per realitzar la vostra feina heu d'utilitzar Python
-i ANTLR4, tal com s'ha explicat a les classes de laboratori.
+>>> HE ARRIBAT FINS AQUÍ
 
 
 # Especificació de JSBach
@@ -265,8 +268,8 @@ python3 beat.py programa.llull
 El *pretty-printer* ha de formatar el codi amb unes regles d'estil semblants a les utilitzades en aquest document i amb uns colors agradables. Per exemple, si el programa fos
 
 ```
-void hanoi(n,ori,dst,aux)
-{    # la n és un real negatiu
+hanoi(n,ori,dst,aux)
+|:    # la n és un real negatiu
     if(n>0){hanoi(n-1,ori,aux,dst)write(ori,"->",dst)hanoi(n-1,aux,
         dst, ori
 )}}
@@ -275,12 +278,12 @@ void hanoi(n,ori,dst,aux)
 la sortida hauria de ser aquest programa, elegantment formatat per a major glòria del Creador:
 
 ```c
-void hanoi(n, ori, dst, aux) {
-    if (n > 0) {
-        hanoi(n - 1, ori, aux, dst)
-        write(ori, "->", dst)
-        hanoi(n - 1, aux, dst, ori)
-    }
+hanoi(n, ori, dst, aux) {
+|:if (n > 0) {
+|:|:hanoi(n - 1, ori, aux, dst)
+|:|:write(ori, "->", dst)
+|:|:hanoi(n - 1, aux, dst, ori)
+|:}
 }
 ```
 
@@ -304,7 +307,7 @@ Heu de lliurar la vostra pràctica al Racó. Només heu de lliurar un fitxer ZIP
 que, al descomprimir-se generi:
 
 - Un fitxer `README.md` que documenti el vostre projecte.
-    - vegeu, per exemple, https://www.makeareadme.com/.
+|:- vegeu, per exemple, https://www.makeareadme.com/.
 
 - Un fitxer `requirements.txt` amb les llibreries que utilitza el vostre projecte.
   - vegeu, per exemple, https://pip.pypa.io/en/stable/user_guide/#requirements-files.
