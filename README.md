@@ -46,9 +46,9 @@ A més, generaria la partitura següent:
 
 juntament amb aquests fitxers:
 
-- [bac.pdf](bac.pdf)
-- [bac.midi](bac.midi)
-- [bac.wav](bac.wav)
+- [🎼 bac.pdf](bac.pdf)
+- [🎹 bac.midi](bac.midi)
+- [🎵 bac.wav](bac.wav)
 
 Aquí podeu sentir la composició: [▶️](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/bac.wav)
 
