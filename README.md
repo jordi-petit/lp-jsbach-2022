@@ -39,11 +39,16 @@ La segona instrucció del programa `<:> [B, A, C]` és una instrucció de reprod
 no el sistema de notació musical llatí. Així, aquest programa
 genera la melodia SI, LA, DO.
 
-L'execució del programa anterior produïria la sortida del missatge `Hello Bach` per pantalla i generaria fitxers PDF, MIDI i WAV amb les notes SI, LA, DO:
+L'execució del programa anterior produïria la sortida del missatge `Hello Bach` per pantalla.
+A més, generaria la partitura següent:
 
-- [hello.pdf]
-- [hello.midi]
-- [hello.wav]
+![bac](bac.png)
+
+juntament amb aquests fitxers:
+
+- [bac.pdf](bac.pdf)
+- [bac.midi](bac.midi)
+- [bac.wav](bac.wav)
 
 
 JSBach permet escriure programes senzills utilitzant enters de forma semblant als LPs habituals. Per exemple, el següent programa mostra com llegir dos nombres i calcular el seu màxim comú divisor utilitzant l'algorisme d'Euclides amb dos procediments i entrada/sortida:

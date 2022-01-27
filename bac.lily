@@ -1,0 +1,7 @@
+\score {
+    \absolute {
+        b' a' c'
+    }
+    \layout { }
+    \midi { }
+}
