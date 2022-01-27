@@ -50,6 +50,8 @@ juntament amb aquests fitxers:
 - [bac.midi](bac.midi)
 - [bac.wav](bac.wav)
 
+Aquí podeu sentir la composició: [https://raw.githubusercontent.com/jordi-petit/lp-jsbach-2022/master/bac.wav](▶️)
+
 
 JSBach permet escriure programes senzills utilitzant enters de forma semblant als LPs habituals. Per exemple, el següent programa mostra com llegir dos nombres i calcular el seu màxim comú divisor utilitzant l'algorisme d'Euclides amb dos procediments i entrada/sortida:
 
