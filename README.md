@@ -1,13 +1,15 @@
 # El doble intèrpret de JSBach
 
-Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia escrita pel compositor. En diem un *doble* intèrpret perquè funciona en el sentit informàtic (interpreta un programa) i en el sentit musical (interpreta una peça de música).
+Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia escrita pel compositor.
 
+En diem un *doble* intèrpret perquè funciona en el sentit informàtic (interpreta un programa) i en el sentit musical (interpreta una peça de música).
+
+![JSBach](bach.png)
 
 ## Bach
 
 Johann Sebastian Bach (1685-1750) fou un organista i compositor de música barroca. La seva fecunda obra es considera el cim de la música barroca, i una de les màximes expressions de la música universal, no tan sols per la seva profunditat intel·lectual, la seva perfecció tècnica i la seva bellesa artística, sinó també per la síntesi dels diversos estils de la seva època, del passat i per la seva incomparable extensió.
 
-![JSBach](bach.png)
 
 
 
