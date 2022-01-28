@@ -55,14 +55,14 @@ Com es veu, la sortida de l'intèrpret són fitxers PDF, MIDI, WAV i MP3.
 JSBach permet escriure programes senzills utilitzant enters de forma semblant als LPs habituals. Per exemple, el programa següent mostra com llegir dos nombres i calcular el seu màxim comú divisor utilitzant l'algorisme d'Euclides amb dos procediments i entrada/sortida:
 
 ```
-~~~ programa llegeix dos enters i n'escriu el seu maxim comu divisor ~~~
+~~~ programa que llegeix dos enters i n'escriu el seu maxim comu divisor ~~~
 
 haupt |:
     <!> "Escriu dos nombres"
     <?> a
     <?> b
     <?> "El seu MCD es"
-    euclides a b
+    <^> euclides a b
 :|
 
 euclides a b |:
@@ -79,12 +79,13 @@ euclides a b |:
 
 Tots els identificadors en JSBach han de contenir lletres minúscules o subratllats. Les notes sí que s'escriuen en majúscules.
 
-Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus. Els paràmetres formals es separen amb blancs, ~~com Déu mana~~ com en Haskell.
+Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus. Els paràmetres es separen amb blancs, ~~com Déu mana~~ com en Haskell.
 
 Les variables no han de ser declarades, i poden ser de tipus enter o llistes. Les notes músicals, es veurà més endavant, no són altra cosa que constants per a enters.
 
-Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `<?>` i `<!>` respectivament. L'operador de comparació per igualtat és `=` i per diferència és `/=`.  L'assignació es fa amb la instrucció `<-`.
-El `während` és el *whike* i el `wenn` el `if`.
+Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `<?>` i `<!>` respectivament. Les crides a procediments comencen amb `<^>`.
+L'operador de comparació per igualtat és `=` i per diferència és `/=`.  L'assignació es fa amb la instrucció `<-`.
+El `während` és el *while* i el `wenn` el `if`.
 El símbol `:||:` és l'`else` de JSBach.
 
 Com no podia ser d'altra manera, el llenguatge de programació JSBach compta amb recursivitat. Aquest programa mostra com solucionar el problema de les Torres de Hanoi:
@@ -92,14 +93,14 @@ Com no podia ser d'altra manera, el llenguatge de programació JSBach compta amb
 ```
 haupt |:
     <?> n
-    hanoi n 1 2 3
+    <^> hanoi n 1 2 3
 :|
 
 hanoi n ori dst aux |:
-    if n > 0 |:
-        hanoi (n - 1) ori aux dst
+    wenn n > 0 |:
+        <^> hanoi (n - 1) ori aux dst
         <!> ori "->" dst
-        hanoi (n - 1) aux dst ori
+        <^> hanoi (n - 1) aux dst ori
     :|
 :|
 ```
@@ -125,17 +126,17 @@ haupt |:
     src <- [C, D, E, F, G]
     dst <- [] |
     aux <- []
-    hanoi #src src dst aux
+    <^> hanoi #src src dst aux
 :|
 
 hanoi n src dst aux |:
     wenn n > 0 |:
-        hanoi (n - 1) src aux dst
+        <^> hanoi (n - 1) src aux dst
         note <- src[#src]
         8< src[#src]
         dst << note
         <:> note
-        hanoi (n - 1) aux dst src
+        <^> hanoi (n - 1) aux dst src
     :|
 :|
 ```
@@ -153,16 +154,16 @@ Canviant o afegint més notes al piu d'orígen es poden compondre noves peces, b
 Al programa anterior es poden veure més operacions  per a llistes:
 
 -  `l[i]` consulta l'`i`-èsim element d'una llista `l`.
-Com que JSBach és per a músics, els índex de les llistes comencen per 1.
+Com que JSBach és per a músics, els índexs de les llistes comencen per 1.
 
-- `l <- x` afegeix l'element `x` al final de la llista `l`.
+- `l << x` afegeix l'element `x` al final de la llista `l`.
 
 -  `#l` retorna la llargada de la llista `l`.
 
 - `8< l[i]` retalla (elimina) l'`i`-èsim element d'una llista `l`.
 `8<` es coneix com *der Scherenoperator* (l'operador de tisores).
 
-  **Aclariment històric:** És fals que l'operador de tisores fos introduït per Anna Magdalena quan en Johann li va demanar un 13è fill.
+  **Aclariment històric:** És fals que l'operador de tisores fos introduït per Anna Magdalena quan en Johann li volia fer un 13è fill.
 
 En JSBach els enters es passen per còpia, les llistes es passen per referència.
 
@@ -184,6 +185,7 @@ Les instruccions de JSBach són:
 - la lectura amb `<?>`,
 - l'escriptura amb `<!>`,
 - la reproducció amb `<:>`,
+- la invocació de procediments amb `<^>`,
 - el condicional amb `wenn`,
 - la iteració amb `während`,
 - la invocació a un procediment i,
