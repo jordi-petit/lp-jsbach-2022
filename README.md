@@ -38,8 +38,6 @@ La segona instrucció del programa `<:> [B, A, C]` és una instrucció de reprod
 no el sistema de notació musical llatí ni el germànic. Així, aquest programa
 genera la melodia Si, La, Do.
 
-Tots els identificadors en JSBach han de contenir lletres minúscules o subratllats. Les notes s'escriuen en majúscules.
-
 L'execució del programa anterior produïria la sortida del missatge `Hallo Bach` per pantalla.
 A més, generaria la partitura següent:
 
@@ -78,6 +76,8 @@ euclides a b |:
     <!> a
 :|
 ```
+
+Tots els identificadors en JSBach han de contenir lletres minúscules o subratllats. Les notes sí que s'escriuen en majúscules.
 
 Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus. Els paràmetres formals es separen amb blancs, ~~com Déu mana~~ com en Haskell.
 
