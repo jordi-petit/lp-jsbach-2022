@@ -165,13 +165,6 @@ Com que JSBach és per a músics, els índexs de les llistes comencen per 1.
 En JSBach els paràmetres funcionen com en Pythom: els enters es passen per còpia, les llistes es passen per referència.
 
 
-# La vostra feina
-
-La vostra feina consisteix en
-implementar un (doble) intèrpret de JSBach.
-
-Per realitzar la vostra feina heu d'utilitzar Python3 i ANTLR4, tal com s'ha explicat a les classes de laboratori. Per generar les partitures, heu d'utilitzar el programa Lilipond. Per generar els WAV i MP3, els programes Timidity++ i ffmpeg.
-
 
 # Especificació de JSBach
 
@@ -316,29 +309,6 @@ Per exemple, podríeu extendre JSBach amb accidentals (notes amb sostinguts o be
 Compte: Les extensions poden portar molta feina, consulteu-les abans amb el vostre professor.
 
 
-# Lliurament
-
-Heu de lliurar la vostra pràctica al Racó. Només heu de lliurar un fitxer ZIP
-que, al descomprimir-se generi:
-
-- Un fitxer `README.md` que documenti el vostre projecte.
-|:- vegeu, per exemple, https://www.makeareadme.com/.
-
-- Un fitxer `jsbach.g4` amb la gramàtica del LP.
-
-- Un fitxer `jsbach.py` amb el programa de l'intèrpret, incloent els seus visitadors.
-
-- Si heu fet extensions, podeu afegir fitxers `test-*.jsb` com a exemples i jocs de proves.
-
-- Res més. De debò, res més. Tampoc directoris. Ni subdirectoris. Ni `.git`s, ni `.MACOS_XXX`... Res més, collons!
-
-Els vostres fitxers de codi en Python han de seguir les regles d’estı́l PEP8, tot i que podeu oblidar les restriccions sobre la llargada màxima de les lı́nies. Podeu utilitzar els paquets `pep8` o `autopep8` o http://pep8online.com/ per assegurar-vos que seguiu aquestes regles d’estı́l. L’ús de tabuladors en el codi queda prohibit (zero directe). Els vostres programes en JSBach han de seguir l'estil exposat en aquest document.
-
-El termini de lliurament és el **??? a les 23:59**.
-
-Per evitar problemes de còpies,
-no pengeu el vostre projecte en repositoris públics.
-
 
 ## Llibreries
 
@@ -405,6 +375,15 @@ Finalment, els fitxers MP3 es poden reproduir amb molts reproductors de so. En u
 afplay exemple.mp3
 ```  
 
+
+# La vostra feina
+
+La vostra feina consisteix en
+implementar un (doble) intèrpret de JSBach.
+
+Per realitzar la vostra feina heu d'utilitzar Python3 i ANTLR4, tal com s'ha explicat a les classes de laboratori. Per generar les partitures, heu d'utilitzar el programa Lilipond. Per generar els WAV i MP3, els programes Timidity++ i ffmpeg.
+
+
 # Consells
 
 Per tal de fer la  pràctica, us recomanem de seguir aquests passos:
@@ -437,6 +416,30 @@ Al llarg de tots els passos anteriors, aneu documentant tot allò que no sigui o
 Deixeu la feina bruta a l'ANTLR: si feu una bona gramàtica, cadascun dels vostres visitadors serà molt curt i molt senzill. Si els vostres visitadors tenen molta lògica, retoqueu la gramàtica, introduint noves regles i/o etiquetes.
 
 Feu la pràctica "amb carinyo".
+
+# Lliurament
+
+Heu de lliurar la vostra pràctica al Racó. Només heu de lliurar un fitxer ZIP
+que, al descomprimir-se generi:
+
+- Un fitxer `README.md` que documenti el vostre projecte.
+|:- vegeu, per exemple, https://www.makeareadme.com/.
+
+- Un fitxer `jsbach.g4` amb la gramàtica del LP.
+
+- Un fitxer `jsbach.py` amb el programa de l'intèrpret, incloent els seus visitadors.
+
+- Si heu fet extensions, podeu afegir fitxers `test-*.jsb` com a exemples i jocs de proves.
+
+- Res més. De debò, res més. Tampoc directoris. Ni subdirectoris. Ni `.git`s, ni `.MACOS_XXX`... Res més, collons!
+
+Els vostres fitxers de codi en Python han de seguir les regles d’estı́l PEP8, tot i que podeu oblidar les restriccions sobre la llargada màxima de les lı́nies. Podeu utilitzar els paquets `pep8` o `autopep8` o http://pep8online.com/ per assegurar-vos que seguiu aquestes regles d’estı́l. L’ús de tabuladors en el codi queda prohibit (zero directe). Els vostres programes en JSBach han de seguir l'estil exposat en aquest document.
+
+El termini de lliurament és el **??? a les 23:59**.
+
+Per evitar problemes de còpies,
+no pengeu el vostre projecte en repositoris públics.
+
 
 
 # Referències
