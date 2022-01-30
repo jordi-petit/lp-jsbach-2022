@@ -48,10 +48,10 @@ A més, generaria la partitura següent:
 
 juntament amb aquests fitxers:
 
-- [🎼 bac.pdf](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/bac.pdf)
-- [🎹 bac.midi](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/bac.midi)
-- [🎵 bac.wav](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/bac.wav)
-- [🎵 bac.mp3](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/bac.mp3)
+- [🎼 bac.pdf](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/bac.pdf)
+- [🎹 bac.midi](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/bac.midi)
+- [🎵 bac.wav](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/bac.wav)
+- [🎵 bac.mp3](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/bac.mp3)
 
 Com es veu, la sortida de l'intèrpret són fitxers PDF, MIDI, WAV i MP3.
 
@@ -144,7 +144,7 @@ La partitura que es genera en aquest programa és:
 
 i aquí la podeu sentir:
 
-- [🎵 hanoi.mp3](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/hanoi.mp3)
+- [🎵 hanoi.mp3](https://github.com/jordi-petit/lp-jsbach-2022/raw/main/hanoi.mp3)
 
 Canviant o afegint més notes a la llista orígen es poden compondre noves peces, ben agradables de sentir!
 
