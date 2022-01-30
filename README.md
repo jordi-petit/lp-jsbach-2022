@@ -1,16 +1,15 @@
 # El doble intèrpret de JSBach
 
-Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia escrita pel compositor.
+Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia descrita pel compositor.
 
 En diem un *doble* intèrpret perquè funciona en el sentit informàtic (interpreta un programa) i en el sentit musical (interpreta una peça de música).
 
 ![JSBach](bach.png)
 
+
 ## Bach
 
-Johann Sebastian Bach (1685-1750) fou un organista i compositor de música barroca. La seva fecunda obra es considera el cim de la música barroca, i una de les màximes expressions de la música universal, no tan sols per la seva profunditat intel·lectual, la seva perfecció tècnica i la seva bellesa artística, sinó també per la síntesi dels diversos estils de la seva època, del passat i per la seva incomparable extensió.
-
-
+Johann Sebastian Bach (1685-1750) fou un organista i compositor de música barroca. La seva fecunda obra es considera el cim de la música barroca, i una de les màximes expressions de la música universal, no tan sols per la seva profunditat intel·lectual, la seva perfecció tècnica i la seva bellesa artística, sinó també per la síntesi dels diversos estils de la seva època, del passat i per la seva incomparable extensió. És evident que, si hagués nascut a la nostra època, Bach programaria.
 
 
 ## Presentació del llenguatge JSBach
@@ -22,21 +21,23 @@ JSBach té moltes instruccions habituals, però utilitza una sintàxi que és, e
 ```
 ~~~ Kleines Program in JSBach ~~~
 
-haupt |:
+Main |:
     <!> "Hallo Bach"
-    <:> [B, A, C]
+    <:> {B A C}
 :|
 ```
 
 Com podeu veure, els comentaris es troben entre triples titlles (`~~~`). No és necessari escriure els comentaris en alemany, però en Johann ho faria així.
 
-Els programes es troben constituïts per procediments (l'ordre no importa) i comencen pel procediment `haupt` (*principal* en alemany).
+Els programes es troben constituïts per procediments (l'ordre no importa) i, per defecte, comencen pel procediment `Main`.
 Cada procediment té un nom, paràmetres (en aquest exemple no n'hi ha), i un bloc de codi associat. Els blocs es troben inscrits
 entre els símbols `|:` i `:|`.
 
+En JSBach, els procediments han de començar per una lletra majúscula. Les variables, en canvi, comencen amb una lletre minúscula. Els noms de notes, també són en majúscules.
+
 La primera instrucció del programa `<!> "Hallo Bach"` és una instrucció d'escriptura (*write*).  La instrucció d'escriptura no és gaire útil per compondre, però és útil per debugar, perquè permet escriure textos (entre dobles cometes), enters i llistes.
 
-La segona instrucció del programa `<:> [B, A, C]` és una instrucció de reproducció (*play*). Aquesta instrucció afegeix la nota o la llista de notes donades a la partitura. Les llistes es donen entre claudàtors amb els seus elements separats per comes. En aquest cas, els elements són les notes músicals `B`, `A` i `C`. JSBach utilitza el sistema de notació musical anglès,
+La segona instrucció del programa `<:> {B A C}` és una instrucció de reproducció (*play*). Aquesta instrucció afegeix la nota o la llista de notes donades a la partitura. Les llistes es donen entre claus amb els seus elements separats per espais. En aquest cas, els elements són les notes músicals `B`, `A` i `C`. JSBach utilitza el sistema de notació musical anglès,
 no el sistema de notació musical llatí ni el germànic. Així, aquest programa
 genera la melodia Si, La, Do.
 
@@ -59,50 +60,44 @@ JSBach permet escriure programes senzills utilitzant enters de forma semblant al
 ```
 ~~~ programa que llegeix dos enters i n'escriu el seu maxim comu divisor ~~~
 
-haupt |:
+Main |:
     <!> "Escriu dos nombres"
     <?> a
     <?> b
-    <?> "El seu MCD es"
-    <^> euclides a b
+    Euclides a b
 :|
 
-euclides a b |:
-    während a /= b |:
-        wenn a > b |:
+Euclides a b |:
+    while a /= b |:
+        if a > b |:
             a <- a - b
-        :||:
+        :| else |:
             b <- b - a
         :|
     :|
-    <!> a
+    <!> "El seu MCD es" a
 :|
 ```
-
-Tots els identificadors en JSBach han de contenir lletres minúscules o subratllats. Les notes sí que s'escriuen en majúscules.
 
 Les variables són locals a cada invocació de cada procediment i els procediments es poden comunicar a través de paràmetres. Els procediments llisten els noms dels seus paràmetres formals, però no inclouen els seus tipus. Els paràmetres es separen amb blancs, ~~com Déu mana~~ com en Haskell.
 
 Les variables no han de ser declarades, i poden ser de tipus enter o llistes. Les notes músicals, es veurà més endavant, no són altra cosa que constants per a enters.
 
-Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `<?>` i `<!>` respectivament. Les crides a procediments comencen amb `<^>`.
-L'operador de comparació per igualtat és `=` i per diferència és `/=`.  L'assignació es fa amb la instrucció `<-`.
-El `während` és el *while* i el `wenn` el `if`.
-El símbol `:||:` és l'`else` de JSBach.
+Com es veu a l'exemple, la sintaxi per llegir i escriure és utilitzant `<?>` i `<!>` respectivament. L'operador de comparació per igualtat és `=` i per diferència és `/=`.  L'assignació es fa amb la instrucció `<-`.
 
 Com no podia ser d'altra manera, el llenguatge de programació JSBach compta amb recursivitat. Aquest programa mostra com solucionar el problema de les Torres de Hanoi:
 
 ```
-haupt |:
+Main |:
     <?> n
-    <^> hanoi n 1 2 3
+    Hanoi n 1 2 3
 :|
 
-hanoi n ori dst aux |:
-    wenn n > 0 |:
-        <^> hanoi (n - 1) ori aux dst
+Hanoi n ori dst aux |:
+    if n > 0 |:
+        Hanoi (n - 1) ori aux dst
         <!> ori "->" dst
-        <^> hanoi (n - 1) aux dst ori
+        Hanoi (n - 1) aux dst ori
     :|
 :|
 ```
@@ -124,36 +119,36 @@ Però, perquè quedar-se amb un mer llistat dels moviments? El programa següent
 ```
 ~~~ Notes de Hanoi ~~~
 
-haupt |:
-    src <- [C, D, E, F, G]
-    dst <- [] |
-    aux <- []
-    <^> hanoi #src src dst aux
+Hanoi |:
+    src <- {C D E F G}
+    dst <- {}
+    aux <- {}
+    HanoiRec #src src dst aux
 :|
 
-hanoi n src dst aux |:
-    wenn n > 0 |:
-        <^> hanoi (n - 1) src aux dst
+HanoiRec n src dst aux |:
+    if n > 0 |:
+        HanoiRec (n - 1) src aux dst
         note <- src[#src]
         8< src[#src]
         dst << note
         <:> note
-        <^> hanoi (n - 1) aux dst src
+        HanoiRec (n - 1) aux dst src
     :|
 :|
 ```
 
 La partitura que es genera en aquest programa és:
 
-IMATGE
+![hanoi](hanoi.png)
 
 i aquí la podeu sentir:
 
-MUSICA  
+- [🎵 hanoi.mp3](https://github.com/jordi-petit/lp-jsbach-2022/raw/haupt/hanoi.mp3)
 
-Canviant o afegint més notes al piu d'orígen es poden compondre noves peces, ben agradables de sentir!
+Canviant o afegint més notes a la llista orígen es poden compondre noves peces, ben agradables de sentir!
 
-Al programa anterior es poden veure més operacions  per a llistes:
+Al programa anterior es poden veure més operacions per a llistes:
 
 -  `l[i]` consulta l'`i`-èsim element d'una llista `l`.
 Com que JSBach és per a músics, els índexs de les llistes comencen per 1.
@@ -167,7 +162,7 @@ Com que JSBach és per a músics, els índexs de les llistes comencen per 1.
 
   **Aclariment històric:** És fals que l'operador de tisores fos introduït per Anna Magdalena quan en Johann li volia fer un 13è fill.
 
-En JSBach els enters es passen per còpia, les llistes es passen per referència.
+En JSBach els paràmetres funcionen com en Pythom: els enters es passen per còpia, les llistes es passen per referència.
 
 
 # La vostra feina
@@ -175,8 +170,7 @@ En JSBach els enters es passen per còpia, les llistes es passen per referència
 La vostra feina consisteix en
 implementar un (doble) intèrpret de JSBach.
 
-Per realitzar la vostra feina heu d'utilitzar Python3 i ANTLR4, tal com s'ha explicat a les classes de laboratori. Per generar les partitures, heu d'utilitzar el programa Lilipond.
-
+Per realitzar la vostra feina heu d'utilitzar Python3 i ANTLR4, tal com s'ha explicat a les classes de laboratori. Per generar les partitures, heu d'utilitzar el programa Lilipond. Per generar els WAV i MP3, els programes Timidity++ i ffmpeg.
 
 
 # Especificació de JSBach
@@ -187,10 +181,9 @@ Les instruccions de JSBach són:
 - la lectura amb `<?>`,
 - l'escriptura amb `<!>`,
 - la reproducció amb `<:>`,
-- la invocació de procediments amb `<^>`,
-- el condicional amb `wenn`,
-- la iteració amb `während`,
-- la invocació a un procediment i,
+- la invocació de procediments,
+- el condicional amb `if` i potser `else`,
+- la iteració amb `while`,
 - l'afegit a llistes amb `<<`.
 - el tall de llistes amb `8<`.
 
@@ -199,7 +192,7 @@ Les instruccions escrites una rera l'altra s'executen seqüencialment.
 
 ## Assignació
 
-L'assignació ha d'avaluar primer l'expressió a la part dreta del `<-` i emmagatzemar després el resultat a la variable local a la part esquerra. Exemple: `a <- a - b`. En el cas d'assignar llistes, cal copiar els valors (sense fer aliasing). A la part esquerra d'una assignació només pot aparèixer una variable (no es pot fer, per exemple, l[2] <- 5).
+L'assignació ha d'avaluar primer l'expressió a la part dreta del `<-` i emmagatzemar després el resultat a la variable local a la part esquerra. Exemple: `a <- a - b`. En el cas d'assignar llistes, cal copiar els valors (sense fer aliasing). Per senzillesa, a la part esquerra d'una assignació només pot aparèixer una variable (no es pot fer, per exemple, l[2] <- 5).
 
 
 ## Lectura
@@ -209,34 +202,32 @@ La instrucció de lectura ha de llegir un valor enter del canal d'entrada estàn
 
 ## Escriptura
 
-La instrucció d'escriptura ha d'avaluar l'expressió del `<!>` i escriure-la, en una línia, al canal de sortida estàndard. Exemple: `<!> x + x`. En el cas d'escriure una llista, cal escriure tots els seus valors entre claudàtors i separats per comes. `<!>` pot contenir diversos paràmetres, cal escriure cadascun d'ells a la mateix línia, separats per espais. Els paràmetres poden contenir textos (tancats entre cometes dobles).
+La instrucció d'escriptura ha d'avaluar l'expressió del `<!>` i escriure-la, en una línia, al canal de sortida estàndard. Exemple: `<!> x + y`. En el cas d'escriure una llista, cal escriure tots els seus valors entre claudàtors i separats per comes. `<!>` pot contenir diversos paràmetres, cal escriure cadascun d'ells a la mateix línia, separats per espais. Els paràmetres poden contenir textos (tancats entre cometes dobles). Els textos no apareixen en cap altre lloc.
+
 
 ## Reproducció
 
-La instrucció de reproducció ha d'avaluar l'expressió del `<:>`. Si és una nota,  l'ha d'afegir a la partitura, amb el valor d'una negra (diferents valors de notes com blanques, rodones o corxeres es deixen per a JSBach2). Si és una llista, ha d'afegir cadascuna de les seves notes (d'esquerra a dreta).
+La instrucció de reproducció ha d'avaluar l'expressió del `<:>`. Si és una nota, l'ha d'afegir a la partitura, amb el valor d'una negra (diferents valors de notes com blanques, rodones o corxeres es deixen per a JSBach2). Si és una llista, ha d'afegir cadascuna de les seves notes (d'esquerra a dreta).
 
 
 ## Condicional
 
-La instrucció condicional té la semàntica habitual. El bloc del sinó és optatiu. Exemples: `wenn x == y |: z <- 1 :|` i `wenn x == y |: z <- 1 :||: z <- 2 :|`. Fixeu-vos que els limitadors dels blocs sempre són obligatoris (tant als condicions com als procediments i als `währen`s).
+La instrucció condicional té la semàntica habitual. El bloc del sinó és optatiu. Exemples: `if x == y |: z <- 1 :|` i `if x == y |: z <- 1 :| else |: z <- 2 :|`. Fixeu-vos que els limitadors dels blocs sempre són obligatoris (tant als condicions com als procediments i als `while`s).
 
 
-## Iteració amb `während`
+## Iteració amb `while`
 
-La instrucció iterativa amb `während` té la semàntica habitual.
-Exemple: `während a > 0 |: a <- a / 2 :|`.
+La instrucció iterativa amb `while` té la semàntica habitual. Exemple: `while a > 0 |: a <- a / 2 :|`.
 
 
 ## Invocació de procediment
 
-La crida a un procediment té la semàntica habitual.  Els paràmetres enters es passen
-per valor, avaluant les expressions dels paràmetres d'esquerra a dreta. Les llistes
-es passen per referència.
+La crida a un procediment té la semàntica habitual.  
 Si el nombre de paràmetres passats
 no corresponen als declarats, es produeix un error. Els procediments no són
 funcions i no poden retornar resultats. Però els procediments es poden cridar
 recursivament. La sintàxi és com a Haskell: sense parèntesis ni comes.
-Exemple: `escriu numero 2`.
+Exemple: `Escriu x + y 2`.
 
 
 ## Expressions
@@ -245,7 +236,7 @@ Si una variable encara no ha rebut cap valor, el seu valor és zero. Els
 operadors aritmètics són els habituals (`+`, `-`, `*`, `/`, `%`) i amb la
 mateixa prioritat que en C. Evidentment, es poden usar parèntesis. El operadors
 relacionals (`=`, `/=`, `<`, `>`, `<=`, `>=`) retornen zero per fals i u per
-cert (Boole és posterior a JSBach).
+cert (Boole és posterior a Bach).
 
 
 ## Llistes
@@ -268,17 +259,17 @@ d'accedir a variables d'altres procediments (només a través dels paràmetres).
 ## Notes
 
 JSBach proporciona uns noms que representen les notes blanques d'un piano (els sostinguts i bemolls es deixen per JSBach2). Les tres primeres notes són A0 (La0), B0 (Si0), C1 (Do1). Les tres darreres són A7 (La7), B7 (Si7), C8 (Do8). A https://ca.wikipedia.org/wiki/Freq%C3%BC%C3%A8ncies_del_piano teniu una explicació d'aquesta nomemclatura). A més, les notes C, D, E, F, G, A, B
-(sense número) son sinónims de C4 (Do central), D4, E4, F4, G4, A4, B4. Les notes de JSBach no són altra cosa que constants, de manera que A0 val 0, B0 val 1, ... i C8 val ???. Així, es pot transposar una nota una octava més amunt o més avall sumant-li o restant-li 7 unitats (sí, els músics són gent peculiar i de 7 en diuen 8).
+(sense número) son sinónims de C4 (Do central), D4, E4, F4, G4, A4, B4. Les notes de JSBach no són altra cosa que constants, de manera que A0 val 0, B0 val 1, ... i C8 val ???. Així, es pot transposar una nota una octava més amunt o més avall sumant-li o restant-li 7 unitats (sí, els músics són gent peculiar i de 7 notes en diuen una octava).
 
 El procediment següent tocaria totes les tecles blanques del piano
 de més greu a més aguda (d'esquerra a dreta):
 
 ```
-alle_schlüssel |:
-    x <- A0
-    während x <= C8 |:
-        <:> x
-        x <- x + 1
+Alle_Schlüssel |:
+    note <- A0
+    while note <= C8 |:
+        <:> note
+        note <- note + 1
     :|
 :|
 ```
@@ -300,12 +291,20 @@ passant-li com a paràmetre el nom del fitxer que conté el codi font
 python3 jsbach.py musica.jsb
 ```
 
+Si es vol començar des d'un procediment diferent del `Main`, es pot donar el seu nom com a paràmetre. Per exemple:
+
+```bash
+python3 jsbach.py musica.jsb Hanoi
+```
+
 Si el programa s'executa correctament, es generaran els fitxers
 `musica.pdf` amb la partitura en format PDF,
 `musica.midi` amb la música en format MIDI,
 `musica.wav` amb la música en format WAV,
 i
 `musica.mp3` amb la música en format MP3.
+
+Si ho voleu, també podeu fer que la música es toqui al final del programa.
 
 
 ## Extensions
@@ -350,7 +349,7 @@ Utilitzeu  `ANTLR` per escriure la gramàtica i l'intèrpret. Podeu utilitzar ll
 
 Per generar les partitures, heu d'utilitzar el programa LilyPond.
 Lilypond ja genera MIDI i PDF.
-Per generar WAV a partir de MIDI heu d'utilitzar `timidity`.
+Per generar WAV a partir de MIDI heu d'utilitzar `timidity++`.
 Per generar MP3 a partir de WAV heu d'utilitzar `ffmpeg`.
 Tots aquests programes es poden instal·lar facilment en Max, Linux i (suposo) Windows. El vostre programa es corregirà en un entorn on els binaris `lilypond`, `timidity` i `ffmpeg` es troben al *path*.
 
@@ -406,6 +405,39 @@ Finalment, els fitxers MP3 es poden reproduir amb molts reproductors de so. En u
 afplay exemple.mp3
 ```  
 
+# Consells
+
+Per tal de fer la  pràctica, us recomanem de seguir aquests passos:
+
+1. Feu tots els exercicis de laboratori inclosos a https://gebakx.github.io/Python3/compiladors.html#1. Us serà molt útil, de debò.
+
+1. Escriviu la gramàtica de JSBach restringit a operacions amb enters (sense llistes ni notes ni instrucció de reproducció).
+
+1. Escriviu els visitadors per la gramàtica anterior per obtenir una primer versió de l'intèrpret.
+
+1. Exteneu la gramàtica amb notes i
+instrucció de reproducció.
+
+1. Escriviu els visitadors per la gramàtica anterior.
+Feu que al acabar generi el fitxer de Lilipond.
+
+1. Exteneu la gramàtica, ara amb les llistes i les seves instruccions associades.
+
+1. Escriviu els visitadors per la gramàtica anterior.
+Amb això ja tindreu tot l'intèrpret.
+
+1. Generar els fitxers d'audio al final.
+
+1. Escriviu el README.
+
+1. Si voleu, realitzeu extensions.
+
+Al llarg de tots els passos anteriors, aneu documentant tot allò que no sigui obvi.
+
+Deixeu la feina bruta a l'ANTLR: si feu una bona gramàtica, cadascun dels vostres visitadors serà molt curt i molt senzill. Si els vostres visitadors tenen molta lògica, retoqueu la gramàtica, introduint noves regles i/o etiquetes.
+
+Feu la pràctica "amb carinyo".
+
 
 # Referències
 
@@ -415,7 +447,7 @@ afplay exemple.mp3
 
 - Lilypond: https://lilypond.org
 
-- Timidity: https://en.wikipedia.org/wiki/TiMidity%2B%2B
+- Timidity++: https://en.wikipedia.org/wiki/TiMidity%2B%2B
 
 - ffmpeg: https://www.ffmpeg.org/
 
