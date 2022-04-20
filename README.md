@@ -435,7 +435,7 @@ que, al descomprimir-se generi:
 
 Els vostres fitxers de codi en Python han de seguir les regles d’estı́l PEP8, tot i que podeu oblidar les restriccions sobre la llargada màxima de les lı́nies. Podeu utilitzar els paquets `pep8` o `autopep8` o http://pep8online.com/ per assegurar-vos que seguiu aquestes regles d’estı́l. L’ús de tabuladors en el codi queda prohibit (zero directe). Els vostres programes en JSBach han de seguir l'estil exposat en aquest document.
 
-El termini de lliurament és el **??? a les 23:59**.
+El termini de lliurament és el **dimecres 8 de juny a les 13:00**.
 
 Per evitar problemes de còpies,
 no pengeu el vostre projecte en repositoris públics.
