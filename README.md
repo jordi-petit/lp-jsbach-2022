@@ -1,6 +1,6 @@
 # El doble intèrpret de JSBach
 
-Aquesta pàgina descriu la segona pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia descrita pel compositor.
+Aquesta pàgina descriu la pràctica de GEI-LP (edició 2021-2022 Q2). La vostra tasca és implementar un doble intèrpret per a un llenguatge de programació musical anomenat JSBach. La sortida d'aquest doble intèrpret serà una partitura i uns fitxers de so que reproduiràn la melodia descrita pel compositor.
 
 En diem un *doble* intèrpret perquè funciona en el sentit informàtic (interpreta un programa) i en el sentit musical (interpreta una peça de música).
 
@@ -162,7 +162,7 @@ Com que JSBach és per a músics, els índexs de les llistes comencen per 1.
 
   **Aclariment històric:** És fals que l'operador de tisores fos introduït per Anna Magdalena quan en Johann li volia fer un 13è fill.
 
-En JSBach els paràmetres funcionen com en Pythom: els enters es passen per còpia, les llistes es passen per referència.
+En JSBach els paràmetres funcionen com en Python (diguem): els enters es passen per còpia, les llistes es passen per referència.
 
 
 
@@ -321,7 +321,7 @@ Per generar les partitures, heu d'utilitzar el programa LilyPond.
 Lilypond ja genera MIDI i PDF.
 Per generar WAV a partir de MIDI heu d'utilitzar `timidity++`.
 Per generar MP3 a partir de WAV heu d'utilitzar `ffmpeg`.
-Tots aquests programes es poden instal·lar facilment en Max, Linux i (suposo) Windows. El vostre programa es corregirà en un entorn on els binaris `lilypond`, `timidity` i `ffmpeg` es troben al *path*.
+Tots aquests programes es poden instal·lar facilment en Mac, Linux i (suposo) Windows. El vostre programa es corregirà en un entorn on els binaris `lilypond`, `timidity` i `ffmpeg` es troben al *path*.
 
 
 ## Breu demostració dels programes externs
