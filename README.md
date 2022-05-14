@@ -234,7 +234,7 @@ cert (Boole és posterior a Bach).
 
 ## Llistes
 
-Les llistes s'escriuen entre claudàtors, amb els seus elements separats per comes. Els elements de les llistes només poden ser enters (o notes, que no són altre cosa que constants enteres). Les llistes es passen per referència.
+Les llistes s'escriuen entre claus, amb els seus elements separats per comes. Els elements de les llistes només poden ser enters (o notes, que no són altre cosa que constants enteres). Les llistes es passen per referència.
 `#l` retorna la llargada de la llista `l`.
 `l[i]` consulta l'`i`-èsim element d'una llista `l`; cal que `i` es trobi entre 1 i `#l`.
 `l << x` afegeix l'element `x` al final de la llista `l`.
