@@ -205,7 +205,7 @@ La instrucció de reproducció ha d'avaluar l'expressió del `<:>`. Si és una n
 
 ## Condicional
 
-La instrucció condicional té la semàntica habitual. El bloc del sinó és optatiu. Exemples: `if x == y |: z <- 1 :|` i `if x == y |: z <- 1 :| else |: z <- 2 :|`. Fixeu-vos que els limitadors dels blocs sempre són obligatoris (tant als condicions com als procediments i als `while`s).
+La instrucció condicional té la semàntica habitual. El bloc del sinó és optatiu. Exemples: `if x = y |: z <- 1 :|` i `if x = y |: z <- 1 :| else |: z <- 2 :|`. Fixeu-vos que els limitadors dels blocs sempre són obligatoris (tant als condicions com als procediments i als `while`s).
 
 
 ## Iteració amb `while`
