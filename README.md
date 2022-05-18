@@ -195,7 +195,7 @@ La instrucció de lectura ha de llegir un valor enter del canal d'entrada estàn
 
 ## Escriptura
 
-La instrucció d'escriptura ha d'avaluar l'expressió del `<!>` i escriure-la, en una línia, al canal de sortida estàndard. Exemple: `<!> x + y`. En el cas d'escriure una llista, cal escriure tots els seus valors entre claudàtors i separats per comes. `<!>` pot contenir diversos paràmetres, cal escriure cadascun d'ells a la mateix línia, separats per espais. Els paràmetres poden contenir textos (tancats entre cometes dobles). Els textos no apareixen en cap altre lloc.
+La instrucció d'escriptura ha d'avaluar l'expressió del `<!>` i escriure-la, en una línia, al canal de sortida estàndard. Exemple: `<!> x + y`. En el cas d'escriure una llista, cal escriure tots els seus valors entre claudàtors i separats per blancs. `<!>` pot contenir diversos paràmetres, cal escriure cadascun d'ells a la mateix línia, separats per espais. Els paràmetres poden contenir textos (tancats entre cometes dobles). Els textos no apareixen en cap altre lloc.
 
 
 ## Reproducció
